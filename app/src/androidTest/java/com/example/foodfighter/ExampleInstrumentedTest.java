@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.foodfighter;
 
 import android.content.Context;
 

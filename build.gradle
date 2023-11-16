@@ -1,10 +1,33 @@
 buildscript {
     dependencies {
-        classpath 'com.google.gms:google-services:4.3.14'
+        classpath 'com.google.gms:google-services:4.3.15'
+
     }
 }// Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
     id 'com.android.application' version '7.3.0' apply false
     id 'com.android.library' version '7.3.0' apply false
+    id 'com.google.gms.google-services' version '4.3.15' apply false
 }
+
+//23-11-09
+//적을 데 없어서 여기다 적음
+//가게 등록, 지도로 가게 주소 불러와서 마커 표시, 클릭 후 가게 정보 조회
+//사업자 등록증 storage 이미지로
+//입력한 가게 주소로 지도에 표시해야 됨 ( 오타 여부 확인 )
+//가게 영업 시간의 데이터는 변동이 심하기에 json 파일로 저장 후 firestore에 등록하려는데 가능할지 모르겠다
+//{
+//    "이름": "맛있는 식당",
+//    "주소": "서울시 가로수길 123",
+//    "영업시간": {
+//    "월요일": "09:00 - 17:00",
+//    "화요일": "10:00 - 18:00",
+//    "수요일": "휴무",
+//    "목요일": "09:00 - 17:00",
+//    "금요일": "09:30 - 16:30",
+//    "토요일": "09:00 - 14:00",
+//    "일요일": "휴무"
+//}
+//}
+//예시임.
 
