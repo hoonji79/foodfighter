@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,6 +32,19 @@ public class Shop_registration_info extends AppCompatActivity {
         return (int) (Math.random() * 900000) + 100000;
     }
 
+    private final ActivityResultLauncher<Intent> getSearchResult = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                // search의 결과 값이 전달되는 부분
+                if (result.getResultCode() == RESULT_OK) {
+                    if (result.getData() != null) {
+                        String data = result.getData().getStringExtra("data");
+                        Address.setText(data);
+                    }
+                }
+            }
+    );
+
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +62,15 @@ public class Shop_registration_info extends AppCompatActivity {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+        Address.setFocusable(false);
+        Address.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 주소 검색 웹뷰 화면으로 이동
+                Intent intent = new Intent(Shop_registration_info.this, add_search.class);
+                getSearchResult.launch(intent);
+            }
+        });
 
         Confirm.setOnClickListener(new View.OnClickListener() {
             @Override
